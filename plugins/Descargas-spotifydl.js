@@ -48,7 +48,7 @@ let handler = async (m, { conn, args, command, usedPrefix}) => {
                 {
                   name: 'quick_reply',
                   buttonParamsJson: JSON.stringify({
-                    display_text: '🍁 Menú del Bot',
+                    display_text: '🍁 Menú',
                     id: 'btn_menu',
                     command: '.menu'
 })
