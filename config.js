@@ -29,7 +29,7 @@ global.prems = ['5491156178758'];
 global.libreria = 'Baileys';
 global.nameqr = 'SukiBot';
 global.namebot = 'SukiBot';
-global.sessions = 'Sessions';
+global.sessions = 'SukiSessions';
 global.jadi = 'JadiBots';
 global.sukiJadibts = true;
 
