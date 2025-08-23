@@ -10,11 +10,11 @@ let handler = async (m, { conn}) => {
   const enlaces = {
     grupoOficial: {
       nombre: '𝖦𝗋𝗎𝗉𝗈 𝖮𝖿𝗂𝖼𝗂𝖺𝗅',
-      url: 'https://chat.whatsapp.com/Bt6O68OzrIN28UZz5Ka1hV'
+      url: 'https://chat.whatsapp.com/Bxwmb1CO5ojASdRT87I11b'
 },
     comunidadPastel: {
       nombre: '𝖢𝗈𝗆𝗎𝗇𝗂𝖽𝖺𝖽 𝖯𝖺𝗌𝗍𝖾𝗅𝖼𝗈𝗋𝖾',
-      url: 'https://chat.whatsapp.com/Bt6O68OzrIN28UZz5Ka1hV'
+      url: 'https://chat.whatsapp.com/Bxwmb1CO5ojASdRT87I11b'
 },
     canalNoticias: {
       nombre: '𝖢𝖺𝗇𝖺𝗅 𝖽𝖾 𝖭𝗈𝗍𝗂𝖼𝗂𝖺𝗌',
