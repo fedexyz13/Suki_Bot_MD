@@ -2,7 +2,7 @@ import { readdirSync, unlinkSync, existsSync, promises as fs, rmSync} from 'fs';
 import path from 'path';
 
 const handler = async (m, { conn, usedPrefix}) => {
-  const sessionPath = `./${Sessions}/`;
+  const sessionPath = `./${SukiSessions}/`;
 
   // Verifica si el comando se ejecuta desde el número principal
   if (global.conn.user.jid!== conn.user.jid) {
@@ -42,7 +42,7 @@ const handler = async (m, { conn, usedPrefix}) => {
 
 handler.help = ['dsowner'];
 handler.tags = ['owner'];
-handler.command = ['delai', 'dsowner', 'clearallsession'];
+handler.command = ['dsowner'];
 handler.rowner = true;
 
 export default handler;
