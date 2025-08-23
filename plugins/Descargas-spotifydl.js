@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 const { generateWAMessageContent, generateWAMessageFromContent, proto} = (await import('@whiskeysockets/baileys')).default;
 
 let MF = async (m, { conn, args, command, usedPrefix}) => {
-  if (!args[0]) return m.reply(`🍁 Ingrese un link de Spotify\n> *Ejemplo:* ${usedPrefix + command} https://open.spotify.com/track/0jH15Y9z2EpwTWRQI11xbj`);
+  if (!args[0]) return m.reply(`🌙 Ingrese un link de Spotify\n> *Ejemplo:* ${usedPrefix + command} https://open.spotify.com/track/0jH15Y9z2EpwTWRQI11xbj`);
   await m.react('🕒');
 
   try {
@@ -28,7 +28,7 @@ let MF = async (m, { conn, args, command, usedPrefix}) => {
               text: `*𝖲𝗎𝗄𝗂 Descarga de Spotify*`
 }),
             footer: proto.Message.InteractiveMessage.Footer.create({
-              text: '𝖲𝗎𝗄𝗂Bot_MD • Shadow Ultra'
+              text: '𝖲𝗎𝗄𝗂Bot_MD'
 }),
             header: proto.Message.InteractiveMessage.Header.create({
               title: '𝖲𝗎𝗄𝗂 Audio',
@@ -48,7 +48,7 @@ let MF = async (m, { conn, args, command, usedPrefix}) => {
                 {
                   name: 'cta_copy',
                   buttonParamsJson: JSON.stringify({
-                    display_text: '💖 Menú del Bot',
+                    display_text: '🍁 Menú del Bot',
                     id: 'btn_menu',
                     copy_code: `.menu`
 })
@@ -70,5 +70,7 @@ let MF = async (m, { conn, args, command, usedPrefix}) => {
 }
 };
 
-handler.command = ['spotifydl', 'spdl'];
-export default MF;
+handler.command = handler.help = ['spotifydl'];
+handler.tags = ["descargas"];
+
+export default handler;
