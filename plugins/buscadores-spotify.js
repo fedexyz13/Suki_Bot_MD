@@ -89,6 +89,6 @@ let handler = async (m, { conn, text}) => {
 
 handler.help = ['spotifysearch *<texto>*'];
 handler.tags = ['search'];
-handler.command = /^(spotifysearch|Spotify)$/i;
+handler.command = ['spotifysearch', 'Spotify'];
 
 export default handler;
