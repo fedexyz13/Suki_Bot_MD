@@ -15,7 +15,7 @@ let handler = async (m, { conn, command, usedPrefix}) => {
   const isListBots = /^(bots|listjadibots|subbots|sukibots)$/i.test(command);
 
   const reportError = async (e) => {
-    await m.reply('❌ Ups... algo falló en el sistema de 𝖲ᴜᴋ𝗂Bot_MD 🌸');
+    await m.reply('❌ Ups... algo falló en el sistema de 𝖲𝗎𝗄𝗂Bot_MD 🌸');
     console.error(e);
 };
 
@@ -27,27 +27,41 @@ let handler = async (m, { conn, command, usedPrefix}) => {
 
       if (!fs.existsSync(sessionPath)) {
         await conn.sendMessage(m.chat, {
-          text: `📦 No se encontró ninguna sesión activa.\n\n🧋 Usa: *${usedPrefix}${command}*\n🆔 Si tienes ID, puedes ejecutar:\n${usedPrefix + command} \`\`\`(ID)\`\`\``
+          text: `📦 No se encontró ninguna sesión activa.\n\n🧋 Usa: *${usedPrefix}${command}*\n🆔 Si tienes ID, puedes ejecutar:\n${usedPrefix + command} \`\`\`(ID)\`\`\``,
+          footer: '𝖲𝗎𝗄𝗂Bot_MD • Sesiones',
+          buttons: [
+            { buttonId: '.menu', buttonText: { displayText: '📂 Menú Principal'}, type: 1}
+          ],
+          headerType: 4,
+          image: { url: 'https://files.catbox.moe/rkvuzb.jpg'}
 }, { quoted: m});
         return;
 }
 
       if (global.conn.user.jid!== conn.user.jid) {
         await conn.sendMessage(m.chat, {
-          text: `🔐 Este comando solo está disponible desde el bot principal.\n🌸 Pulsa aquí para ir al core:\nhttps://wa.me/${global.conn.user.jid.split('@')[0]}?text=${usedPrefix}${command}`
+          text: `🔐 Este comando solo está disponible desde el bot principal.\n🌸 Pulsa aquí para ir al core:\nhttps://wa.me/5491176429275?text=${usedPrefix}${command}`,
+          footer: '𝖲𝗎𝗄𝗂Bot_MD • Seguridad',
+          buttons: [
+            { buttonId: '.menu', buttonText: { displayText: '📂 Menú Principal'}, type: 1}
+          ],
+          headerType: 4,
+          image: { url: 'https://files.catbox.moe/rkvuzb.jpg'}
 }, { quoted: m});
         return;
 }
 
       await conn.sendMessage(m.chat, {
-        text: `💫 Sesión *𝖲ᴜᴋ𝗂Bot_MD* finalizada.\n📚 El vínculo escolar fue cerrado correctamente.`
-}, { quoted: m});
+        text: `💫 Sesión *𝖲𝗎𝗄𝗂Bot_MD* finalizada.\n📚 El vínculo escolar fue cerrado correctamente.`,
+        quoted: m
+});
 
       try {
         fs.rmdir(sessionPath, { recursive: true, force: true});
         await conn.sendMessage(m.chat, {
-          text: `✅ SubBot eliminado.\n🧋 La unidad ha sido desconectada del grupo de estudio.`
-}, { quoted: m});
+          text: `✅ SubBot eliminado.\n🧋 La unidad ha sido desconectada del grupo de estudio.`,
+          quoted: m
+});
 } catch (e) {
         reportError(e);
 }
@@ -58,7 +72,7 @@ let handler = async (m, { conn, command, usedPrefix}) => {
       if (global.conn.user.jid === conn.user.jid) {
         conn.reply(m.chat, '👑 Eres el bot principal, y no puedes ser pausado por ti mismo 💅', m);
 } else {
-        await conn.reply(m.chat, '💤 SubBot detenido.\n🧃 𝖲ᴜᴋ𝗂Bot_MD ha pausado este nodo temporalmente.', m);
+        await conn.reply(m.chat, '💤 SubBot detenido.\n🧃 𝖲𝗎𝗄𝗂Bot_MD ha pausado este nodo temporalmente.', m);
         conn.ws.close();
 }
       break;
@@ -85,12 +99,12 @@ let handler = async (m, { conn, command, usedPrefix}) => {
       const maxBots = 20;
       const espaciosLibres = maxBots - botsActivos.length;
 
-      const mensajeFinal = `🌸 *𝖲ᴜᴋ𝗂Bot_MD | SubBots en línea*\n\n🧋 ¿Quieres conectarte como ayudante pastelcore?\nPulsa el botón para pedir tu código 🍁\n\n📊 SubBots activos: *${botsActivos.length}*\n🧃 Espacios disponibles: *${espaciosLibres}*\n\n${listado || '🚫 Ningún SubBot está en línea en este momento.'}`;
+      const mensajeFinal = `🌸 *𝖲𝗎𝗄𝗂Bot_MD | SubBots en línea*\n\n🧋 ¿Quieres conectarte como ayudante pastelcore?\nPulsa el botón para pedir tu código 🍁\n\n📊 SubBots activos: *${botsActivos.length}*\n🧃 Espacios disponibles: *${espaciosLibres}*\n\n${listado || '🚫 Ningún SubBot está en línea en este momento.'}`;
 
       await conn.sendMessage(m.chat, {
         image: { url: 'https://files.catbox.moe/rkvuzb.jpg'},
         caption: mensajeFinal,
-        footer: 'SukiBot_MD 🍁',
+        footer: '𝖲𝗎𝗄𝗂Bot_MD 🍁',
         buttons: [
           { buttonId: '.code', buttonText: { displayText: '💻 Pedir Código'}, type: 1}
         ],
@@ -105,8 +119,7 @@ let handler = async (m, { conn, command, usedPrefix}) => {
 
 handler.command = [
   'deletesesion', 'deletebot', 'deletesession', 'deletesesaion',
-  'stop', 'pausarbot', 'detenersuki',
-  'bots', 'listjadibots', 'subbots', 'sukibots'
+  'stop', 'pausarbot', 'bots', 'subbots'
 ];
 
 export default handler;
