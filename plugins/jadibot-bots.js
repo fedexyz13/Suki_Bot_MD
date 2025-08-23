@@ -30,7 +30,7 @@ let handler = async (m, { conn, command, usedPrefix}) => {
           text: `📦 No se encontró ninguna sesión activa.\n\n🧋 Usa: *${usedPrefix}${command}*\n🆔 Si tienes ID, puedes ejecutar:\n${usedPrefix + command} \`\`\`(ID)\`\`\``,
           footer: '𝖲𝗎𝗄𝗂Bot_MD • Sesiones',
           buttons: [
-            { buttonId: '.menu', buttonText: { displayText: '📂 Menú Principal'}, type: 1}
+            { buttonId: '.menu', buttonText: { displayText: '🍁 Menu'}, type: 1}
           ],
           headerType: 4,
           image: { url: 'https://files.catbox.moe/rkvuzb.jpg'}
@@ -43,7 +43,7 @@ let handler = async (m, { conn, command, usedPrefix}) => {
           text: `🔐 Este comando solo está disponible desde el bot principal.\n🌸 Pulsa aquí para ir al core:\nhttps://wa.me/5491176429275?text=${usedPrefix}${command}`,
           footer: '𝖲𝗎𝗄𝗂Bot_MD • Seguridad',
           buttons: [
-            { buttonId: '.menu', buttonText: { displayText: '📂 Menú Principal'}, type: 1}
+            { buttonId: '.menu', buttonText: { displayText: '🍁 Menu'}, type: 1}
           ],
           headerType: 4,
           image: { url: 'https://files.catbox.moe/rkvuzb.jpg'}
@@ -92,8 +92,7 @@ let handler = async (m, { conn, command, usedPrefix}) => {
 };
 
       const listado = botsActivos.map((bot, i) => {
-        const jid = bot.user.jid.replace(/[^0-9]/g, '');
-        return `📖 「 ${i + 1} 」\n👤 Nombre: ${bot.user.name || 'SubBot'}\n⏱️ Activo: ${bot.uptime? formatUptime(Date.now() - bot.uptime): 'Desconocido'}\n📎 Enlace: https://wa.me/${jid}?text=${usedPrefix}code`;
+        const jid = bot.user.jid.replace(/[^0-9]/g, ''); return `📖 「 ${i + 1} 」\n👤 Nombre: ${bot.user.name || 'SubBot'}\n⏱️ Activo: ${bot.uptime? formatUptime(Date.now() - bot.uptime): 'Desconocido'}\n📎 Enlace: https://wa.me/${jid}?text=${usedPrefix}code`;
 }).join('\n\n🍓──────────────────🍓\n\n');
 
       const maxBots = 20;
@@ -119,7 +118,8 @@ let handler = async (m, { conn, command, usedPrefix}) => {
 
 handler.command = [
   'deletesesion', 'deletebot', 'deletesession', 'deletesesaion',
-  'stop', 'pausarbot', 'bots', 'subbots'
+  'stop', 'pausarbot', 'detenersuki',
+  'bots', 'listjadibots', 'subbots', 'sukibots'
 ];
 
 export default handler;
