@@ -13,7 +13,7 @@ let handler = async (m, { conn, args}) => {
     const emoji = emojis[Math.floor(Math.random() * emojis.length)];
 
     let response = output.includes('Already up to date')
-? `${emoji} _𝖲𝗎𝗄𝗂‐𝖻𝗈𝗍 𝖲𝗎𝗄𝗂 𝖞𝖆 𝖾𝖘𝖙𝖺́ 𝖺𝖼𝗍𝗎𝖺𝗅𝗂𝗓𝖺𝖽𝗈._`
+? `${emoji} _𝖲𝗎𝗄𝗂‐𝖻𝗈𝗍 𝖞𝖆 𝖾𝖘𝖙𝖺́ 𝖺𝖼𝗍𝗎𝖺𝗅𝗂𝗓𝖺𝖽𝗈._`
 : `*${emoji} 𝗔𝗖𝗧𝗨𝗔𝗟𝗜𝗭𝗔𝗖𝗜𝗢́𝗡 𝗖𝗢𝗠𝗣𝗟𝗘𝗧𝗔𝗗𝗔*\n\n` +
         `🗓️ Fecha: *${fecha}*\n🕒 Hora: *${hora}*\n🍁 Rama: *${branch}*\n📝 Último commit:\n> ${lastCommit}\n\n` +
         `\`\`\`\n${output}\n\`\`\``;
