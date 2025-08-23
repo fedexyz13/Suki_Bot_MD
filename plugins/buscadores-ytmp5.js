@@ -116,9 +116,9 @@ let handler = async (m, { conn, text, usedPrefix, command}) => {
 }
 };
 
-handler.help = ['ytmp4 <url>'];
-handler.tags = ['downloader', 'youtube'];
-handler.command = ['ytmp4'];
+handler.help = ['ytmp4 <url>', 'ytvideo'];
+handler.tags = ['downloader', 'youtube']
+handler.command = ['ytmp4', 'ytvideo']
 handler.register = true;
 
 export default handler;
