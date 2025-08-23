@@ -1,8 +1,8 @@
 import fetch from 'node-fetch';
 const { generateWAMessageContent, generateWAMessageFromContent, proto} = (await import('@whiskeysockets/baileys')).default;
 
-let MF = async (m, { conn, args, command, usedPrefix}) => {
-  if (!args[0]) return m.reply(`🌙 Ingrese un link de Spotify\n> *Ejemplo:* ${usedPrefix + command} https://open.spotify.com/track/0jH15Y9z2EpwTWRQI11xbj`);
+let handler = async (m, { conn, args, command, usedPrefix}) => {
+  if (!args[0]) return m.reply(`🍁 Ingrese un link de Spotify\n> *Ejemplo:* ${usedPrefix + command} https://open.spotify.com/track/0jH15Y9z2EpwTWRQI11xbj`);
   await m.react('🕒');
 
   try {
@@ -38,19 +38,19 @@ let MF = async (m, { conn, args, command, usedPrefix}) => {
             nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.fromObject({
               buttons: [
                 {
-                  name: 'cta_copy',
+                  name: 'cta_url',
                   buttonParamsJson: JSON.stringify({
                     display_text: '🎧 Descargar Audio',
-                    id: 'btn_download',
-                    copy_code: `.spotifydl ${args[0]}`
+                    url: track.download,
+                    id: 'btn_download'
 })
 },
                 {
-                  name: 'cta_copy',
+                  name: 'quick_reply',
                   buttonParamsJson: JSON.stringify({
                     display_text: '🍁 Menú del Bot',
                     id: 'btn_menu',
-                    copy_code: `.menu`
+                    command: '.menu'
 })
 }
               ]
@@ -70,7 +70,8 @@ let MF = async (m, { conn, args, command, usedPrefix}) => {
 }
 };
 
-handler.command = handler.help = ['spotifydl'];
-handler.tags = ["descargas"];
+handler.command = ['spotifydl', 'spdl'];
+handler.help = ['spotifydl <link>'];
+handler.tags = ['descargas'];
 
 export default handler;
