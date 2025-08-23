@@ -20,32 +20,24 @@ let handler = async (m, { conn, args}) => {
 
     await conn.sendMessage(m.chat, {
       text: response,
-      contextInfo: {
-        externalAdReply: {
-          title: '𝖲𝗎𝗄𝗂Bot-MD',
-          body: `✅ Actualizado el ${fecha} a las ${hora}`,
-          mediaType: 1,
-          renderLargerThumbnail: true,
-          thumbnailUrl: 'https://files.cloudkuimages.guru/images/rgelVn5i.jpg',
-          sourceUrl: 'https://whatsapp.com/channel/0029VbApe6jG8l5Nv43dsC2N'
-}
-}
+      footer: '𝖲𝗎𝗄𝗂Bot-MD • Actualización',
+      buttons: [
+        { buttonId: '.menu', buttonText: { displayText: '🍁 Menú'}, type: 1}
+      ],
+      headerType: 4,
+      image: { url: 'https://files.cloudkuimages.guru/images/rgelVn5i.jpg'}
 }, { quoted: m});
 
 } catch (error) {
     const errorMsg = `❌ *Error al actualizar:*\n${error.message || 'Error desconocido.'}`;
     await conn.sendMessage(m.chat, {
       text: errorMsg,
-      contextInfo: {
-        externalAdReply: {
-          title: '𝖲𝗎𝗄𝗂Bot-MD',
-          body: '⚠️ Error al intentar actualizar',
-          mediaType: 1,
-          renderLargerThumbnail: true,
-          thumbnailUrl: 'https://files.cloudkuimages.guru/images/rgelVn5i.jpg',
-          sourceUrl: 'https://whatsapp.com/channel/0029VbApe6jG8l5Nv43dsC2N'
-}
-}
+      footer: '𝖲𝗎𝗄𝗂Bot-MD • Error',
+      buttons: [
+        { buttonId: '.menu', buttonText: { displayText: '🍁 Menú'}, type: 1}
+      ],
+      headerType: 4,
+      image: { url: 'https://files.cloudkuimages.guru/images/rgelVn5i.jpg'}
 }, { quoted: m});
 }
 };
