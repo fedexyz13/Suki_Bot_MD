@@ -8,7 +8,7 @@ const handler = async (m, { conn}) => {
 }
 
   const chatIds = m.isGroup? [m.chat, m.sender]: [m.sender];
-  const sessionPath = './Sessions/';
+  const sessionPath = './SukiSessions/';
   let filesDeleted = 0;
   let errores = [];
 
