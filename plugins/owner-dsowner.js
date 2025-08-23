@@ -1,42 +1,71 @@
-import { readdirSync, unlinkSync, existsSync, promises as fs, rmSync} from 'fs';
+import { promises as fs, existsSync} from 'fs';
 import path from 'path';
 
-const handler = async (m, { conn, usedPrefix}) => {
-  const sessionPath = `./${SukiSessions}/`;
+const handler = async (m, { conn}) => {
+  const sessionPath = './SukiSessions/';
 
-  // Verifica si el comando se ejecuta desde el número principal
   if (global.conn.user.jid!== conn.user.jid) {
-    return conn.reply(m.chat, `⚠️ 𝖲𝗎𝗄𝗂 dice: Utiliza este comando directamente desde el número principal del bot.`, m);
+    return conn.sendMessage(m.chat, {
+      text: '⚠️ 𝖲𝗎𝗄𝗂 dice: Este comando solo puede ejecutarse desde el número principal del bot.',
+      footer: '𝖲𝗎𝗄𝗂Bot_MD • Seguridad',
+      buttons: [
+        { buttonId: '.menu', buttonText: { displayText: '🍁 Menu'}, type: 1}
+      ],
+      headerType: 4,
+      image: { url: 'https://files.cloudkuimages.guru/images/xs59WBZj.jpg'}
+}, { quoted: m});
 }
 
-  await conn.reply(m.chat, `🧹 𝖲𝗎𝗄𝗂 está limpiando sesiones... Se conservará *creds.json*.`, m);
-  m.react(rwait);
+  await m.react('🧹');
+  let eliminados = 0;
 
   try {
     if (!existsSync(sessionPath)) {
-      return conn.reply(m.chat, `📂 La carpeta de sesiones no existe o está vacía.`, m);
+      return conn.sendMessage(m.chat, {
+        text: '📁 𝖲𝗎𝗄𝗂 informa: La carpeta de sesiones no existe o está vacía.',
+        footer: '𝖲𝗎𝗄𝗂Bot_MD • Estado',
+        buttons: [
+          { buttonId: '.menu', buttonText: { displayText: '🍁 Menu'}, type: 1}
+        ],
+        headerType: 4,
+        image: { url: 'https://files.cloudkuimages.guru/images/xs59WBZj.jpg'}
+}, { quoted: m});
 }
 
-    const files = await fs.readdir(sessionPath);
-    let filesDeleted = 0;
-
-    for (const file of files) {
-      if (file!== 'creds.json') {
-        await fs.unlink(path.join(sessionPath, file));
-        filesDeleted++;
+    const archivos = await fs.readdir(sessionPath);
+    for (const archivo of archivos) {
+      if (archivo!== 'creds.json') {
+        await fs.unlink(path.join(sessionPath, archivo));
+        eliminados++;
 }
 }
 
-    if (filesDeleted === 0) {
-      await conn.reply(m.chat, `📁 No se encontraron archivos para eliminar. Solo existe *creds.json*.`, m);
-} else {
-      m.react(done);
-      await conn.reply(m.chat, `✅ Se eliminaron *${filesDeleted}* archivos de sesión. *creds.json* fue conservado.`, m);
-      conn.reply(m.chat, `👀 *¡Hola! ¿logras verme?*`, m);
-}
-} catch (err) {
-    console.error('❌ Error al eliminar archivos de sesión:', err);
-    await conn.reply(m.chat, `⚠️ 𝖲𝗎𝗄𝗂 encontró un problema al limpiar las sesiones.`, m);
+    const mensaje = eliminados === 0
+? '📦 No se encontraron archivos para eliminar. Solo existe *creds.json*.'
+: `✅ Se eliminaron *${eliminados}* archivos de sesión. *creds.json* fue conservado.`;
+
+    await m.react('✅');
+    await conn.sendMessage(m.chat, {
+      text: `🌸 *𝖲𝗎𝗄𝗂Bot_MD · Limpieza de Sesiones*\n\n${mensaje}`,
+      footer: '𝖲𝗎𝗄𝗂Bot_MD • Sistema',
+      buttons: [
+        { buttonId: '.menu', buttonText: { displayText: '🍁 Menu'}, type: 1}
+      ],
+      headerType: 4,
+      image: { url: 'https://files.cloudkuimages.guru/images/xs59WBZj.jpg'}
+}, { quoted: m});
+
+} catch (error) {
+    console.error('❌ Error al eliminar sesiones:', error);
+    await conn.sendMessage(m.chat, {
+      text: '⚠️ 𝖲𝗎𝗄𝗂 encontró un problema al limpiar las sesiones.',
+      footer: '𝖲𝗎𝗄𝗂Bot_MD • Error',
+      buttons: [
+        { buttonId: '.menu', buttonText: { displayText: '🍁 Menu'}, type: 1}
+      ],
+      headerType: 4,
+      image: { url: 'https://files.cloudkuimages.guru/images/xs59WBZj.jpg'}
+}, { quoted: m});
 }
 };
 
@@ -45,4 +74,4 @@ handler.tags = ['owner'];
 handler.command = ['dsowner'];
 handler.rowner = true;
 
-export default handler;
+export default hand
